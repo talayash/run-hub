@@ -92,13 +92,13 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
                     <SettingSection title="Startup" icon={Monitor}>
                       <SettingToggle
                         label="Start on boot"
-                        description="Launch RunHub when Windows starts"
+                        description="Launch RunDeck when Windows starts"
                         checked={settings.startOnBoot}
                         onChange={(checked) => settings.updateSettings({ startOnBoot: checked })}
                       />
                       <SettingToggle
                         label="Minimize to tray"
-                        description="Keep RunHub running in system tray when closed"
+                        description="Keep RunDeck running in system tray when closed"
                         checked={settings.minimizeToTray}
                         onChange={(checked) => settings.updateSettings({ minimizeToTray: checked })}
                       />
@@ -272,11 +272,9 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
                   <div className="flex flex-col items-center justify-center py-8 animate-slide-up-fade">
                     <div className="relative w-24 h-24 mb-6">
                       <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl animate-pulse"></div>
-                      <div className="relative w-24 h-24 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-xl shadow-primary/30">
-                        <span className="text-white text-4xl font-bold">R</span>
-                      </div>
+                      <img src="/icon.png" alt="RunDeck" className="relative w-24 h-24 rounded-2xl shadow-xl shadow-primary/30" />
                     </div>
-                    <h2 className="text-2xl font-bold text-text mb-1">RunHub</h2>
+                    <h2 className="text-2xl font-bold text-text mb-1">RunDeck</h2>
                     <p className="text-text-muted mb-6">Version 0.1.0</p>
 
                     <div className="bg-background/30 rounded-xl p-4 border border-border/30 max-w-sm text-center">

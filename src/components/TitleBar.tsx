@@ -20,10 +20,8 @@ export function TitleBar() {
       data-tauri-drag-region
     >
       <div className="flex items-center gap-2.5 px-3" data-tauri-drag-region>
-        <div className="w-6 h-6 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/30">
-          <span className="text-white text-xs font-bold">R</span>
-        </div>
-        <span className="text-sm font-semibold text-text tracking-tight">RunHub</span>
+        <img src="/icon.png" alt="RunDeck" className="w-6 h-6" />
+        <span className="text-sm font-semibold text-text tracking-tight">RunDeck</span>
       </div>
 
       <div className="flex">
