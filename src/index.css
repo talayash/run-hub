@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* RunDeck custom colors */
+  /* RunHub custom colors */
   --color-surface: #16213e;
   --color-surface-hover: #1f2b4d;
   --color-text: #e4e4e7;
@@ -58,7 +58,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Dark theme is default for RunDeck */
+/* Dark theme is default for RunHub */
 :root {
   --radius: 0.5rem;
   --background: #1a1a2e;

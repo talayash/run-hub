@@ -23,7 +23,7 @@ export function TitleBar() {
         <div className="w-5 h-5 bg-primary rounded flex items-center justify-center">
           <span className="text-white text-xs font-bold">R</span>
         </div>
-        <span className="text-sm font-medium text-text">RunDeck</span>
+        <span className="text-sm font-medium text-text">RunHub</span>
       </div>
 
       <div className="flex">

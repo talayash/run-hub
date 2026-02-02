@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-RunDeck is a terminal-based run configuration manager built with Tauri 2, React 19, and TypeScript. It provides a GUI for managing and running multiple terminal processes (similar to IntelliJ's run configurations).
+RunHub is a terminal-based run configuration manager built with Tauri 2, React 19, and TypeScript. It provides a GUI for managing and running multiple terminal processes (similar to IntelliJ's run configurations).
 
 ## Development Commands
 

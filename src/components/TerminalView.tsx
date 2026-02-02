@@ -11,12 +11,14 @@ import '@xterm/xterm/css/xterm.css';
 interface TerminalViewProps {
   configId: string;
   isActive: boolean;
+  onSearchAddonReady?: (searchAddon: SearchAddon | null) => void;
 }
 
-export function TerminalView({ configId, isActive }: TerminalViewProps) {
+export function TerminalView({ configId, isActive, onSearchAddonReady }: TerminalViewProps) {
   const terminalRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<Terminal | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
+  const searchAddonRef = useRef<SearchAddon | null>(null);
   const clearVersion = useProcessStore((state) => state.clearVersion[configId] || 0);
 
   const handleResize = useCallback(() => {
@@ -76,6 +78,10 @@ export function TerminalView({ configId, isActive }: TerminalViewProps) {
 
     xtermRef.current = terminal;
     fitAddonRef.current = fitAddon;
+    searchAddonRef.current = searchAddon;
+
+    // Notify parent of search addon
+    onSearchAddonReady?.(searchAddon);
 
     // Handle keyboard input
     terminal.onData((data) => {
@@ -102,8 +108,10 @@ export function TerminalView({ configId, isActive }: TerminalViewProps) {
       terminal.dispose();
       xtermRef.current = null;
       fitAddonRef.current = null;
+      searchAddonRef.current = null;
+      onSearchAddonReady?.(null);
     };
-  }, [configId, handleResize]);
+  }, [configId, handleResize, onSearchAddonReady]);
 
   useEffect(() => {
     if (isActive) {

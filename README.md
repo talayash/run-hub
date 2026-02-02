@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="src-tauri/icons/128x128.png" alt="RunDeck Logo" width="128" height="128">
+  <img src="src-tauri/icons/128x128.png" alt="RunHub Logo" width="128" height="128">
 </p>
 
-<h1 align="center">RunDeck</h1>
+<h1 align="center">RunHub</h1>
 
 <p align="center">
   <strong>A modern terminal-based run configuration manager</strong>
@@ -20,7 +20,7 @@
 
 ## Overview
 
-RunDeck is a desktop application for managing and running multiple terminal processes simultaneously. Similar to IDE run configurations (like IntelliJ IDEA), it provides a unified interface to start, stop, restart, and monitor your development services.
+RunHub is a desktop application for managing and running multiple terminal processes simultaneously. Similar to IDE run configurations (like IntelliJ IDEA), it provides a unified interface to start, stop, restart, and monitor your development services.
 
 ## Features
 
@@ -68,8 +68,8 @@ RunDeck is a desktop application for managing and running multiple terminal proc
 
 ```bash
 # Clone the repository
-git clone https://github.com/talayash/rundeck.git
-cd rundeck
+git clone https://github.com/talayash/runhub.git
+cd runhub
 
 # Install dependencies
 npm install
@@ -121,7 +121,7 @@ For Java projects requiring a specific JDK version:
 ### Project Structure
 
 ```
-rundeck/
+runhub/
 ├── src/                    # React frontend
 │   ├── components/         # UI components
 │   ├── stores/             # Zustand state management

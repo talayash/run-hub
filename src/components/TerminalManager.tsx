@@ -1,7 +1,12 @@
 import { TerminalView } from './TerminalView';
 import { useProcessStore } from '@/stores/processStore';
+import type { SearchAddon } from '@xterm/addon-search';
 
-export function TerminalManager() {
+interface TerminalManagerProps {
+  onSearchAddonReady?: (searchAddon: SearchAddon | null) => void;
+}
+
+export function TerminalManager({ onSearchAddonReady }: TerminalManagerProps) {
   const { processes, activeConfigId } = useProcessStore();
 
   // Get all config IDs that have been started at some point
@@ -30,6 +35,7 @@ export function TerminalManager() {
           <TerminalView
             configId={configId}
             isActive={configId === activeConfigId}
+            onSearchAddonReady={configId === activeConfigId ? onSearchAddonReady : undefined}
           />
         </div>
       ))}

@@ -15,7 +15,7 @@ pub fn setup_tray(app: &AppHandle) -> Result<TrayIcon, Box<dyn std::error::Error
 
     let tray = TrayIconBuilder::new()
         .menu(&menu)
-        .tooltip("RunDeck")
+        .tooltip("RunHub")
         .on_menu_event(|app, event| {
             match event.id.as_ref() {
                 "quit" => {

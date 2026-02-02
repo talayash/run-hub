@@ -1,8 +1,11 @@
 import { create } from 'zustand';
 import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
+import { save } from '@tauri-apps/plugin-dialog';
+import { writeTextFile } from '@tauri-apps/plugin-fs';
 import type { ProcessState, ProcessStatus, RunConfig } from '@/types';
 import { buildCommand } from '@/utils/commandBuilder';
+import { stripAnsi } from '@/utils/ansiUtils';
 
 interface ProcessStore {
   processes: Record<string, ProcessState>;
@@ -19,6 +22,7 @@ interface ProcessStore {
   updateProcessStatus: (id: string, status: ProcessStatus, exitCode?: number) => void;
   appendOutput: (id: string, data: string) => void;
   clearOutput: (id: string) => void;
+  exportLogs: (configId: string, configName: string) => Promise<void>;
 
   initListeners: () => Promise<() => void>;
 }
@@ -161,6 +165,31 @@ export const useProcessStore = create<ProcessStore>((set, get) => ({
         [id]: (state.clearVersion[id] || 0) + 1,
       },
     }));
+  },
+
+  exportLogs: async (configId, configName) => {
+    const outputs = get().terminalOutputs[configId] || [];
+    if (outputs.length === 0) {
+      return;
+    }
+
+    const rawContent = outputs.join('');
+    const cleanContent = stripAnsi(rawContent);
+
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const defaultFilename = `${configName.replace(/[^a-zA-Z0-9-_]/g, '_')}-${timestamp}.log`;
+
+    const filePath = await save({
+      defaultPath: defaultFilename,
+      filters: [
+        { name: 'Log Files', extensions: ['log', 'txt'] },
+        { name: 'All Files', extensions: ['*'] },
+      ],
+    });
+
+    if (filePath) {
+      await writeTextFile(filePath, cleanContent);
+    }
   },
 
   initListeners: async () => {

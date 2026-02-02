@@ -67,7 +67,7 @@ export function parseSpringBootRunXml(xmlContent: string): SpringBootRunXml | nu
 }
 
 /**
- * Convert parsed IntelliJ config to RunDeck config
+ * Convert parsed IntelliJ config to RunHub config
  */
 export function convertToRunConfig(
   parsed: SpringBootRunXml,

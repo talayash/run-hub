@@ -14,7 +14,7 @@ export function EmptyState({ onNewConfig }: EmptyStateProps) {
           <Terminal className="w-10 h-10 text-primary" />
         </div>
 
-        <h2 className="text-2xl font-semibold text-text mb-2">Welcome to RunDeck</h2>
+        <h2 className="text-2xl font-semibold text-text mb-2">Welcome to RunHub</h2>
         <p className="text-text-muted mb-8">
           Manage all your terminal-based run configurations in one place.
           Create configurations for shells, Gradle, Maven, Node.js, Docker, and more.

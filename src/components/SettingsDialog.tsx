@@ -39,7 +39,7 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-text">Start on boot</p>
-                  <p className="text-xs text-text-muted">Launch RunDeck when Windows starts</p>
+                  <p className="text-xs text-text-muted">Launch RunHub when Windows starts</p>
                 </div>
                 <input
                   type="checkbox"
@@ -54,7 +54,7 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-text">Minimize to tray</p>
-                  <p className="text-xs text-text-muted">Keep RunDeck running in system tray when closed</p>
+                  <p className="text-xs text-text-muted">Keep RunHub running in system tray when closed</p>
                 </div>
                 <input
                   type="checkbox"
@@ -208,7 +208,7 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
               <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-white text-2xl font-bold">R</span>
               </div>
-              <h2 className="text-xl font-semibold text-text mb-1">RunDeck</h2>
+              <h2 className="text-xl font-semibold text-text mb-1">RunHub</h2>
               <p className="text-text-muted mb-4">Version 0.1.0</p>
               <p className="text-sm text-text-muted max-w-md mx-auto">
                 A Windows desktop application for managing terminal-based run

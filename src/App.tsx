@@ -3,6 +3,7 @@ import { TitleBar } from '@/components/TitleBar';
 import { Sidebar } from '@/components/Sidebar';
 import { TerminalManager } from '@/components/TerminalManager';
 import { TerminalToolbar } from '@/components/TerminalToolbar';
+import { TerminalSearch } from '@/components/TerminalSearch';
 import { StatusBar } from '@/components/StatusBar';
 import { ConfigDialog } from '@/components/ConfigDialog';
 import { SettingsDialog } from '@/components/SettingsDialog';
@@ -11,6 +12,7 @@ import { EmptyState } from '@/components/EmptyState';
 import { useConfigStore } from '@/stores/configStore';
 import { useProcessStore } from '@/stores/processStore';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
+import type { SearchAddon } from '@xterm/addon-search';
 
 function App() {
   const [sidebarWidth, setSidebarWidth] = useState(280);
@@ -19,6 +21,8 @@ function App() {
   const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [editConfigId, setEditConfigId] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchAddon, setSearchAddon] = useState<SearchAddon | null>(null);
 
   const { configs, loadConfig } = useConfigStore();
   const { activeConfigId, initListeners } = useProcessStore();
@@ -75,11 +79,20 @@ function App() {
     setCommandPaletteOpen(true);
   }, []);
 
+  const handleSearch = useCallback(() => {
+    setSearchOpen(true);
+  }, []);
+
+  const handleCloseSearch = useCallback(() => {
+    setSearchOpen(false);
+  }, []);
+
   // Keyboard shortcuts
   useKeyboardShortcuts({
     onNewConfig: handleNewConfig,
     onSettings: handleSettings,
     onCommandPalette: handleCommandPalette,
+    onSearch: handleSearch,
   });
 
   const showEmptyState = configs.length === 0;
@@ -111,10 +124,16 @@ function App() {
             <EmptyState onNewConfig={handleNewConfig} />
           ) : (
             <>
-              <TerminalToolbar />
-              <div className="flex-1 overflow-hidden bg-background">
+              <TerminalToolbar onSearch={handleSearch} />
+              <div className="flex-1 overflow-hidden bg-background relative">
+                {showTerminal && searchOpen && (
+                  <TerminalSearch
+                    searchAddon={searchAddon}
+                    onClose={handleCloseSearch}
+                  />
+                )}
                 {showTerminal ? (
-                  <TerminalManager />
+                  <TerminalManager onSearchAddonReady={setSearchAddon} />
                 ) : (
                   <div className="h-full flex items-center justify-center text-text-muted">
                     <div className="text-center">

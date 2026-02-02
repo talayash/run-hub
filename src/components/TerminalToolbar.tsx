@@ -1,4 +1,4 @@
-import { Play, Square, RotateCw, Trash2, Copy, Search } from 'lucide-react';
+import { Play, Square, RotateCw, Trash2, Copy, Search, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -11,7 +11,7 @@ interface TerminalToolbarProps {
 
 export function TerminalToolbar({ onSearch }: TerminalToolbarProps) {
   const { configs } = useConfigStore();
-  const { processes, activeConfigId, startProcess, stopProcess, restartProcess, clearOutput } =
+  const { processes, activeConfigId, startProcess, stopProcess, restartProcess, clearOutput, exportLogs } =
     useProcessStore();
 
   const activeConfig = configs.find((c) => c.id === activeConfigId);
